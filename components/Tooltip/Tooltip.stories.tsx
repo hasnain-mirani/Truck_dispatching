@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "components/Button/Button";
-import { Tooltip, TooltipProps } from "./Tooltip";
+import type { Meta, StoryObj } from "@storybook/react"
+import { Button } from "components/Button/Button"
+import { Tooltip, TooltipProps } from "./Tooltip"
 
 const meta: Meta<TooltipProps> = {
   title: "Components/Tooltip",
@@ -26,9 +26,9 @@ const meta: Meta<TooltipProps> = {
       description: "Tooltip content",
     },
   },
-};
+}
 
-type Story = StoryObj<TooltipProps>;
+type Story = StoryObj<TooltipProps>
 
 export const Default: Story = {
   render: (args) => (
@@ -38,6 +38,6 @@ export const Default: Story = {
       </Button>
     </Tooltip>
   ),
-};
+}
 
-export default meta;
+export default meta

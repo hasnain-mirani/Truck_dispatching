@@ -1,26 +1,19 @@
-"use client";
+"use client"
 
-import { Button as MuiButton, ButtonProps as MuiButtonProps } from "@mui/material";
-import React from "react";
+import { Button as MuiButton, ButtonProps as MuiButtonProps } from "@mui/material"
+import React from "react"
 
-export type ButtonVariant = "primary" | "secondary";
-export type ButtonSize = "sm" | "lg";
+export type ButtonVariant = "primary" | "secondary"
+export type ButtonSize = "sm" | "lg"
 
 export interface ButtonProps extends Omit<MuiButtonProps, "size" | "variant"> {
-  intent?: ButtonVariant;
-  size?: ButtonSize;
-  underline?: boolean;
-  href?: string;
+  intent?: ButtonVariant
+  size?: ButtonSize
+  underline?: boolean
+  href?: string
 }
 
-export function Button({
-  intent = "primary",
-  size = "lg",
-  underline = false,
-  href,
-  children,
-  ...props
-}: ButtonProps) {
+export function Button({ intent = "primary", size = "lg", underline = false, href, children, ...props }: ButtonProps) {
   return (
     <MuiButton
       {...props}
@@ -36,5 +29,5 @@ export function Button({
     >
       {children}
     </MuiButton>
-  );
+  )
 }

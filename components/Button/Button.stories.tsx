@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button, ButtonProps } from "./Button";
+import type { Meta, StoryObj } from "@storybook/react"
+import { Button, ButtonProps } from "./Button"
 
 const meta: Meta<ButtonProps> = {
   title: "Components/Button",
@@ -31,12 +31,12 @@ const meta: Meta<ButtonProps> = {
       description: "Set a URL to render as an anchor (`<a>`), otherwise it renders as a button.",
     },
   },
-};
+}
 
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<ButtonProps>
 
 export const Default: Story = {
   render: (args) => <Button {...args} />,
-};
+}
 
-export default meta;
+export default meta

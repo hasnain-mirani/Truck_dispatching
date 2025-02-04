@@ -1,13 +1,13 @@
-import { Metadata } from "next";
-import { Button } from "components/Button/Button";
-import { Tooltip } from "components/Tooltip/Tooltip";
+import { Metadata } from "next"
+import { Button } from "components/Button/Button"
+import { Tooltip } from "components/Tooltip/Tooltip"
 
 export const metadata: Metadata = {
   title: "Next.js Enterprise Boilerplate",
   twitter: {
     card: "summary_large_image",
   },
-};
+}
 
 export default function Web() {
   return (
@@ -20,5 +20,5 @@ export default function Web() {
         </Button>
       </Tooltip>
     </>
-  );
+  )
 }
