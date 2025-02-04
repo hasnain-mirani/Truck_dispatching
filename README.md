@@ -5,7 +5,7 @@
 To download the project, you can clone the repository using the following command:
 
 ```sh
-git clone https://github.com/yourusername/truckvise-frontend.git
+git clone https://github.com/softwareinsight/truckvise-frontend.git
 ```
 
 Then navigate to the project directory:
