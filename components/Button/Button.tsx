@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import { CircularProgress, Button as MuiButton, ButtonProps as MuiButtonProps } from "@mui/material";
-import React from "react";
+import { CircularProgress, Button as MuiButton, ButtonProps as MuiButtonProps } from "@mui/material"
+import React from "react"
 
-export type ButtonVariant = "primary" | "secondary" | "danger";
-export type ButtonSize = "sm" | "lg";
+export type ButtonVariant = "primary" | "secondary" | "danger"
+export type ButtonSize = "sm" | "lg"
 
 export interface ButtonProps extends Omit<MuiButtonProps, "size" | "variant"> {
-  intent?: ButtonVariant;
-  size?: ButtonSize;
-  underline?: boolean;
-  href?: string;
-  loading?: boolean;
-  fullWidth?: boolean;
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
+  intent?: ButtonVariant
+  size?: ButtonSize
+  underline?: boolean
+  href?: string
+  loading?: boolean
+  fullWidth?: boolean
+  startIcon?: React.ReactNode
+  endIcon?: React.ReactNode
 }
 
 export function Button({
@@ -33,7 +33,7 @@ export function Button({
     primary: "#fecf19",
     secondary: "#012a66",
     danger: "#d32f2f",
-  };
+  }
 
   return (
     <MuiButton
@@ -63,5 +63,5 @@ export function Button({
     >
       {children}
     </MuiButton>
-  );
+  )
 }

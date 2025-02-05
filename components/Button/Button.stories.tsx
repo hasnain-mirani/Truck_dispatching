@@ -1,6 +1,6 @@
-import { Delete, Save } from "@mui/icons-material";
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button, ButtonProps } from "./Button";
+import { Delete, Save } from "@mui/icons-material"
+import type { Meta, StoryObj } from "@storybook/react"
+import { Button, ButtonProps } from "./Button"
 
 const meta: Meta<ButtonProps> = {
   title: "Components/Button",
@@ -48,33 +48,33 @@ const meta: Meta<ButtonProps> = {
       control: false,
     },
   },
-};
+}
 
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<ButtonProps>
 
 export const Default: Story = {
   render: (args) => <Button {...args} />,
-};
+}
 
 export const Loading: Story = {
   args: {
     loading: true,
   },
-};
+}
 
 export const WithStartIcon: Story = {
   args: {
     startIcon: <Save />,
     children: "Save",
   },
-};
+}
 
 export const WithEndIcon: Story = {
   args: {
     endIcon: <Save />,
     children: "Save",
   },
-};
+}
 
 export const DangerButton: Story = {
   args: {
@@ -82,13 +82,13 @@ export const DangerButton: Story = {
     children: "Delete",
     startIcon: <Delete />,
   },
-};
+}
 
 export const FullWidth: Story = {
   args: {
     fullWidth: true,
     children: "Full Width Button",
   },
-};
+}
 
-export default meta;
+export default meta

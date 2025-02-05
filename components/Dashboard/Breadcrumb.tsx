@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { Breadcrumbs, Link, Typography } from "@mui/material";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext"
+import { Breadcrumbs, Link, Typography } from "@mui/material"
 
 export interface BreadcrumbProps {
-  items: { label: string; href?: string }[];
+  items: { label: string; href?: string }[]
 }
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
@@ -22,5 +22,5 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
         )
       )}
     </Breadcrumbs>
-  );
+  )
 }

@@ -1,16 +1,16 @@
-import { Email, Lock, Person } from "@mui/icons-material";
-import { Box,  Checkbox, FormControlLabel, Typography } from "@mui/material";
-import { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
-import { TextField } from "components/TextField/TextField";
+import { Email, Lock, Person } from "@mui/icons-material"
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material"
+import { Metadata } from "next"
+import Link from "next/link"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
+import { TextField } from "components/TextField/TextField"
 
 export const metadata: Metadata = {
-    title: "Create a new account - Truckvise",
-    twitter: {
-      card: "summary_large_image",
-    },
+  title: "Create a new account - Truckvise",
+  twitter: {
+    card: "summary_large_image",
+  },
 }
 export default function RegisterPage() {
   return (
@@ -26,14 +26,13 @@ export default function RegisterPage() {
         <TextField label="Confirm Password" passwordField placeholder="Re-enter your password" startIcon={<Lock />} />
         <FormControlLabel control={<Checkbox />} label="I agree to the Terms and Conditions" />
 
-        <Button intent="primary" size="lg" fullWidth>SIGN UP</Button>
+        <Button intent="primary" size="lg" fullWidth>
+          SIGN UP
+        </Button>
         <Typography variant="body2">
-          Already have an account?{" "}
-          <Link href="/auth/login">
-            Login here
-          </Link>
+          Already have an account? <Link href="/auth/login">Login here</Link>
         </Typography>
       </Box>
     </AuthLayout>
-  );
+  )
 }

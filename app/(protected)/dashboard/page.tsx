@@ -1,13 +1,13 @@
-import { Box, Button, Typography } from "@mui/material";
-import { Metadata } from "next";
-import { DashboardLayout } from "components/Layouts/DashboardLayout";
+import { Box, Button, Typography } from "@mui/material"
+import { Metadata } from "next"
+import { DashboardLayout } from "components/Layouts/DashboardLayout"
 
 export const metadata: Metadata = {
-    title: "Dashboard - Truckvise",
-    twitter: {
-      card: "summary_large_image",
-    },
-  }
+  title: "Dashboard - Truckvise",
+  twitter: {
+    card: "summary_large_image",
+  },
+}
 
 export default function DashboardPage() {
   return (
@@ -21,5 +21,5 @@ export default function DashboardPage() {
         </Button>
       </Box>
     </DashboardLayout>
-  );
+  )
 }

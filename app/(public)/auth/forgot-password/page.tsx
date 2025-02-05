@@ -1,16 +1,16 @@
-import { Email } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
-import { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
-import { TextField } from "components/TextField/TextField";
+import { Email } from "@mui/icons-material"
+import { Box, Typography } from "@mui/material"
+import { Metadata } from "next"
+import Link from "next/link"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
+import { TextField } from "components/TextField/TextField"
 
 export const metadata: Metadata = {
-    title: "Forgot password - Truckvise",
-    twitter: {
-      card: "summary_large_image",
-    },
+  title: "Forgot password - Truckvise",
+  twitter: {
+    card: "summary_large_image",
+  },
 }
 
 export default function ForgotPasswordPage() {
@@ -26,15 +26,14 @@ export default function ForgotPasswordPage() {
         </Typography>
 
         <TextField label="Email ID" placeholder="e.g. john@example.com" startIcon={<Email />} />
-        <Button intent="primary" size="lg" fullWidth>SEND RESET LINK</Button>
+        <Button intent="primary" size="lg" fullWidth>
+          SEND RESET LINK
+        </Button>
 
         <Typography variant="body2">
-          Remember your password?{" "}
-          <Link href="/auth/login">
-            Back to Login
-          </Link>
+          Remember your password? <Link href="/auth/login">Back to Login</Link>
         </Typography>
       </Box>
     </AuthLayout>
-  );
+  )
 }

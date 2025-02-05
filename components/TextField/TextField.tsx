@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CircularProgress, IconButton, InputAdornment } from "@mui/material";
-import MuiTextField, { TextFieldProps as MuiTextFieldProps } from "@mui/material/TextField";
-import React, { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material"
+import { CircularProgress, IconButton, InputAdornment } from "@mui/material"
+import MuiTextField, { TextFieldProps as MuiTextFieldProps } from "@mui/material/TextField"
+import React, { useState } from "react"
 
 export interface CustomTextFieldProps extends Omit<MuiTextFieldProps, "error"> {
-  errorMessage?: string;
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
-  loading?: boolean;
-  passwordField?: boolean;
+  errorMessage?: string
+  startIcon?: React.ReactNode
+  endIcon?: React.ReactNode
+  loading?: boolean
+  passwordField?: boolean
 }
 
 export function TextField({
@@ -21,7 +21,7 @@ export function TextField({
   passwordField = false,
   ...props
 }: CustomTextFieldProps) {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <MuiTextField
@@ -64,5 +64,5 @@ export function TextField({
         },
       }}
     />
-  );
+  )
 }

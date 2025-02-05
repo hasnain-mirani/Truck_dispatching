@@ -1,25 +1,20 @@
-"use client";
+"use client"
 
-import { Box, Container, Grid2, Paper, useMediaQuery, useTheme } from "@mui/material";
-import { ReactNode } from "react";
+import { Box, Container, Grid2, Paper, useMediaQuery, useTheme } from "@mui/material"
+import { ReactNode } from "react"
 
 interface AuthLayoutProps {
-  imageSrc: string;
-  children: ReactNode;
+  imageSrc: string
+  children: ReactNode
 }
 
 export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const theme = useTheme()
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"))
 
   return (
     <Container maxWidth="lg">
-      <Grid2
-        container
-        justifyContent="center"
-        alignItems="center"
-        sx={{ height: "100vh" }}
-      >
+      <Grid2 container justifyContent="center" alignItems="center" sx={{ height: "100vh" }}>
         <Paper
           elevation={3}
           sx={{
@@ -55,5 +50,5 @@ export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
         </Paper>
       </Grid2>
     </Container>
-  );
+  )
 }

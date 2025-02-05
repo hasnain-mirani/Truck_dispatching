@@ -1,16 +1,16 @@
-import { Email, Lock } from "@mui/icons-material";
-import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
-import { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
-import { TextField } from "components/TextField/TextField";
+import { Email, Lock } from "@mui/icons-material"
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material"
+import { Metadata } from "next"
+import Link from "next/link"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
+import { TextField } from "components/TextField/TextField"
 
 export const metadata: Metadata = {
-    title: "Login to your account - Truckvise",
-    twitter: {
-      card: "summary_large_image",
-    },
+  title: "Login to your account - Truckvise",
+  twitter: {
+    card: "summary_large_image",
+  },
 }
 
 export default function LoginPage() {
@@ -25,21 +25,17 @@ export default function LoginPage() {
 
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <FormControlLabel control={<Checkbox />} label="Remember me" />
-          <Link href="/auth/forgot-password">
-            Forgot password?
-          </Link>
+          <Link href="/auth/forgot-password">Forgot password?</Link>
         </Box>
 
-        <Button intent="primary" size="lg" fullWidth>LOGIN</Button>
-
+        <Button intent="primary" size="lg" fullWidth>
+          LOGIN
+        </Button>
 
         <Typography variant="body2">
-          Don’t have an account?{" "}
-          <Link href="/auth/register">
-            Register
-          </Link>
+          Don’t have an account? <Link href="/auth/register">Register</Link>
         </Typography>
       </Box>
     </AuthLayout>
-  );
+  )
 }
