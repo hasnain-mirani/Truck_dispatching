@@ -3,7 +3,7 @@ import { Button } from "components/Button/Button"
 import { Tooltip } from "components/Tooltip/Tooltip"
 
 export const metadata: Metadata = {
-  title: "Next.js Enterprise Boilerplate",
+  title: "Truckvise app",
   twitter: {
     card: "summary_large_image",
   },
