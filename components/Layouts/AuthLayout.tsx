@@ -13,14 +13,14 @@ export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"))
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Grid2 container justifyContent="center" alignItems="center" sx={{ height: "100vh" }}>
         <Paper
           elevation={3}
           sx={{
-            minHeight: "70%",
+            // minHeight: "70%",
             width: "100%",
-            maxWidth: 900,
+            maxWidth: 1200,
             overflow: "hidden",
             display: "flex",
             flexDirection: isSmallScreen ? "column" : "row",
@@ -28,7 +28,7 @@ export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
         >
           <Box
             sx={{
-              flex: 1,
+              flex: 7,
               backgroundImage: `url(${imageSrc})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -37,7 +37,7 @@ export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
 
           <Box
             sx={{
-              flex: 1,
+              flex: 5,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",

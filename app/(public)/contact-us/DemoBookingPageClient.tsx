@@ -24,7 +24,6 @@ export default function DemoBookingPageClient() {
           margin: "0 auto",
         }}
       >
-        {/* Title / Subtitle */}
         <Typography variant="h4" fontWeight="bold" textAlign="center">
           Book your exclusive demo
         </Typography>
@@ -33,7 +32,6 @@ export default function DemoBookingPageClient() {
           Let’s grab 15 minutes that work for you.
         </Typography>
 
-        {/* Fleet size (Select) */}
         <SelectField
           label="Your fleet size"
           placeholder="Select your fleet size"
@@ -45,13 +43,11 @@ export default function DemoBookingPageClient() {
           <MenuItem value="large">Large (50+ vehicles)</MenuItem>
         </SelectField>
 
-        {/* Number of vehicles */}
         <TextField
           label="How many vehicles are in your fleet?"
           placeholder="e.g. 25"
         />
 
-        {/* Industry (Select) */}
         <SelectField
           label="Your industry"
           placeholder="Select your industry"
@@ -63,13 +59,11 @@ export default function DemoBookingPageClient() {
           <MenuItem value="logistics">Logistics</MenuItem>
         </SelectField>
 
-        {/* First Name & Last Name in a single row */}
         <Box sx={{ display: "flex", gap: 2 }}>
           <TextField label="First Name" placeholder="John" />
           <TextField label="Last Name" placeholder="Doe" />
         </Box>
 
-        {/* Company Name */}
         <TextField
           label="Company Name"
           placeholder="e.g. Acme Inc."
@@ -81,13 +75,11 @@ export default function DemoBookingPageClient() {
           placeholder="e.g. john@example.com"
         />
 
-        {/* Phone Number */}
         <TextField
           label="Phone Number"
           placeholder="e.g. +1 (123) 456-7890"
         />
 
-        {/* Book Demo button */}
         <Button intent="primary" size="lg" fullWidth>
           Book Demo
         </Button>
