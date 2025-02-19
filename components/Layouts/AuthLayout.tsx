@@ -18,12 +18,13 @@ export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
         <Paper
           elevation={3}
           sx={{
-            // minHeight: "70%",
+            minHeight: "80%",
             width: "100%",
             maxWidth: 1200,
             overflow: "hidden",
             display: "flex",
             flexDirection: isSmallScreen ? "column" : "row",
+            borderRadius: "20px"
           }}
         >
           <Box
@@ -41,7 +42,9 @@ export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              border: "4px solid #fecf19",
               alignItems: "center",
+              borderRadius: "0 20px 20px 0",
               p: 4,
             }}
           >
