@@ -4,7 +4,7 @@ import { CircularProgress, Button as MuiButton, ButtonProps as MuiButtonProps } 
 import React from "react"
 
 export type ButtonVariant = "primary" | "secondary" | "danger"
-export type ButtonSize = "sm" | "lg"
+export type ButtonSize = "sm" | "lg" | "md"
 
 export interface ButtonProps extends Omit<MuiButtonProps, "size" | "variant"> {
   intent?: ButtonVariant
@@ -42,10 +42,10 @@ export function Button({
       component={href ? "a" : "button"}
       variant="contained"
       color="primary"
-      size={size === "sm" ? "small" : "large"}
+      size={size === "sm" ? "small" : size === "md" ? "medium" : "large"}
       sx={{
         textDecoration: underline ? "underline" : "none",
-        borderRadius: 2,
+        borderRadius: 1,
         backgroundColor: colorMap[intent],
         color: intent === "primary" ? "#000" : "#fff",
         "&:hover": {
