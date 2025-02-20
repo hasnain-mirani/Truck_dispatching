@@ -24,7 +24,7 @@ export function AuthLayout({ imageSrc, children }: AuthLayoutProps) {
             overflow: "hidden",
             display: "flex",
             flexDirection: isSmallScreen ? "column" : "row",
-            borderRadius: "20px"
+            borderRadius: "20px",
           }}
         >
           <Box

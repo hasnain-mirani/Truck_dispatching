@@ -11,13 +11,7 @@ export interface CustomSelectFieldProps extends Omit<MuiTextFieldProps, "error">
   loading?: boolean
 }
 
-export function SelectField({
-  errorMessage,
-  startIcon,
-  endIcon,
-  loading = false,
-  ...props
-}: CustomSelectFieldProps) {
+export function SelectField({ errorMessage, startIcon, endIcon, loading = false, ...props }: CustomSelectFieldProps) {
   return (
     <MuiTextField
       {...props}
@@ -27,31 +21,27 @@ export function SelectField({
       helperText={errorMessage}
       fullWidth
       InputProps={{
-        startAdornment: startIcon ? (
-          <InputAdornment position="start">{startIcon}</InputAdornment>
-        ) : null,
+        startAdornment: startIcon ? <InputAdornment position="start">{startIcon}</InputAdornment> : null,
         endAdornment: (
-          <InputAdornment position="end">
-            {loading ? <CircularProgress size={20} /> : endIcon}
-          </InputAdornment>
+          <InputAdornment position="end">{loading ? <CircularProgress size={20} /> : endIcon}</InputAdornment>
         ),
       }}
-    //   sx={{
-    //     "& label.Mui-focused": {
-    //       color: "#fecf19",
-    //     },
-    //     "& .MuiOutlinedInput-root": {
-    //       "& fieldset": {
-    //         borderColor: "#fecf19",
-    //       },
-    //       "&:hover fieldset": {
-    //         borderColor: "#e6b800",
-    //       },
-    //       "&.Mui-focused fieldset": {
-    //         borderColor: "#fecf19",
-    //       },
-    //     },
-    //   }}
+      //   sx={{
+      //     "& label.Mui-focused": {
+      //       color: "#fecf19",
+      //     },
+      //     "& .MuiOutlinedInput-root": {
+      //       "& fieldset": {
+      //         borderColor: "#fecf19",
+      //       },
+      //       "&:hover fieldset": {
+      //         borderColor: "#e6b800",
+      //       },
+      //       "&.Mui-focused fieldset": {
+      //         borderColor: "#fecf19",
+      //       },
+      //     },
+      //   }}
     />
   )
 }

@@ -43,10 +43,7 @@ export default function DemoBookingPageClient() {
           <MenuItem value="large">Large (50+ vehicles)</MenuItem>
         </SelectField>
 
-        <TextField
-          label="How many vehicles are in your fleet?"
-          placeholder="e.g. 25"
-        />
+        <TextField label="How many vehicles are in your fleet?" placeholder="e.g. 25" />
 
         <SelectField
           label="Your industry"
@@ -64,21 +61,12 @@ export default function DemoBookingPageClient() {
           <TextField label="Last Name" placeholder="Doe" />
         </Box>
 
-        <TextField
-          label="Company Name"
-          placeholder="e.g. Acme Inc."
-        />
+        <TextField label="Company Name" placeholder="e.g. Acme Inc." />
 
         {/* Work Email */}
-        <TextField
-          label="Work Email"
-          placeholder="e.g. john@example.com"
-        />
+        <TextField label="Work Email" placeholder="e.g. john@example.com" />
 
-        <TextField
-          label="Phone Number"
-          placeholder="e.g. +1 (123) 456-7890"
-        />
+        <TextField label="Phone Number" placeholder="e.g. +1 (123) 456-7890" />
 
         <Button intent="primary" size="lg" fullWidth>
           Book Demo
