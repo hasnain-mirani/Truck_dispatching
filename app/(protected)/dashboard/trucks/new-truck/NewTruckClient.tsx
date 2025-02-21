@@ -123,13 +123,22 @@ export default function NewTruckClient() {
       <Card sx={{  mx: "auto" }}>
         <CardContent>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              
+            >
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   gap: 2,
+                  borderRight: {
+                    xs: "none",
+                    md: "2px solid #e0e0e0",
+                  },
                 }}
               >
                 <Box
