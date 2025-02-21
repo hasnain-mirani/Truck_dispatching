@@ -29,13 +29,11 @@ export interface TruckRow {
   status: string
 }
 
-// Example: Replace with a real API call
 async function getTrucks(): Promise<TruckRow[]> {
   // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/trucks`, { cache: "no-store" });
   // if (!res.ok) throw new Error("Failed to fetch trucks");
   // return res.json();
 
-  // Mock data
   return [
     {
       id: "1",
