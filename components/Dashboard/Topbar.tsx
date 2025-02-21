@@ -1,29 +1,53 @@
 "use client"
 
 import { Menu } from "@mui/icons-material"
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material"
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
 import { usePathname } from "next/navigation"
+import React from "react"
+import { Button, ButtonProps } from "components/Button/Button"
 
 const drawerWidth = 240
 
-interface TopBarProps {
-  handleDrawerToggle: () => void
-  pageTitle?: string
+export interface TopBarActionButtonProps extends Omit<ButtonProps, "children"> {
+  label: React.ReactNode
 }
 
-export function TopBar({ handleDrawerToggle, pageTitle }: TopBarProps) {
+export interface TopBarProps {
+  handleDrawerToggle: () => void
+  pageTitle?: string
+  actionButton?: TopBarActionButtonProps
+  buttonPosition?: "left" | "right"
+}
+
+export function TopBar({ handleDrawerToggle, pageTitle, actionButton, buttonPosition = "right" }: TopBarProps) {
   const pathname = usePathname()
 
-  const defaultTitles: { [key: string]: string } = {
-    "/": "Dashboard",
-    "/partners": "Partners",
-    "/chat": "Chat",
-    "/trucks": "Trucks",
-    "/requests": "Requests",
-    "/reports": "Reports",
+  const defaultTitles: Record<string, string> = {
+    "/dashboard": "Dashboard",
+    "/dashboard/partners": "Partners",
+    "/dashboard/chat": "Chat",
+    "/dashboard/trucks": "Trucks",
+    "/dashboard/requests": "Requests",
+    "/dashboard/reports": "Reports",
+  }
+
+  const defaultActionButtons: Record<string, TopBarActionButtonProps | undefined> = {
+    "/dashboard/partners": {
+      label: "Add Partner",
+      href: "/dashboard/partners/new-partner",
+      intent: "primary",
+      size: "md",
+    },
+    "/dashboard/trucks": {
+      label: "Add Truck",
+      href: "/dashboard/trucks/new-truck",
+      intent: "primary",
+      size: "md",
+    },
   }
 
   const title = pageTitle || defaultTitles[pathname] || "Dashboard"
+  const btn = actionButton || defaultActionButtons[pathname]
 
   return (
     <AppBar
@@ -36,7 +60,7 @@ export function TopBar({ handleDrawerToggle, pageTitle }: TopBarProps) {
         borderBottom: "1px solid #e0e0e0",
       }}
     >
-      <Toolbar>
+      <Toolbar sx={{ display: "flex", alignItems: "center" }}>
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -46,9 +70,24 @@ export function TopBar({ handleDrawerToggle, pageTitle }: TopBarProps) {
         >
           <Menu />
         </IconButton>
-        <Typography variant="h6" noWrap>
-          {title}
-        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "start", gap: "15px", flexGrow: 1 }}>
+          {buttonPosition === "left" && btn && (
+            <Button {...btn} sx={{ mr: 2, ...btn.sx }}>
+              {btn.label}
+            </Button>
+          )}
+
+          <Typography variant="h6" noWrap>
+            {title}
+          </Typography>
+
+          {buttonPosition === "right" && btn && (
+            <Button {...btn} sx={{ ml: 2, ...btn.sx }}>
+              {btn.label}
+            </Button>
+          )}
+        </Box>
       </Toolbar>
     </AppBar>
   )

@@ -26,22 +26,6 @@ export function SelectField({ errorMessage, startIcon, endIcon, loading = false,
           <InputAdornment position="end">{loading ? <CircularProgress size={20} /> : endIcon}</InputAdornment>
         ),
       }}
-      //   sx={{
-      //     "& label.Mui-focused": {
-      //       color: "#fecf19",
-      //     },
-      //     "& .MuiOutlinedInput-root": {
-      //       "& fieldset": {
-      //         borderColor: "#fecf19",
-      //       },
-      //       "&:hover fieldset": {
-      //         borderColor: "#e6b800",
-      //       },
-      //       "&.Mui-focused fieldset": {
-      //         borderColor: "#fecf19",
-      //       },
-      //     },
-      //   }}
     />
   )
 }
