@@ -1,7 +1,6 @@
 import { Metadata } from "next"
 import TrucksClient from "./TrucksClient"
 
-// Ensure this page is rendered dynamically (no caching) if desired
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
