@@ -105,7 +105,6 @@ export default function NewTruckClient() {
         formData.append("insuranceFile", insuranceFile)
       }
 
-      // Example POST request to your API endpoint:
       // const res = await fetch("/api/trucks", {
       //   method: "POST",
       //   body: formData,
@@ -121,10 +120,9 @@ export default function NewTruckClient() {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Card sx={{ maxWidth: 1200, mx: "auto" }}>
+      <Card sx={{  mx: "auto" }}>
         <CardContent>
           <Grid container spacing={2}>
-            {/* Left Column: Truck Photo */}
             <Grid item xs={12} md={4}>
               <Box
                 sx={{
