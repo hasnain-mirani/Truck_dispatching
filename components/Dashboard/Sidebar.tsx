@@ -18,6 +18,8 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const drawerWidth = 240;
 
@@ -27,15 +29,17 @@ interface SidebarProps {
 }
 
 const menuItems = [
-  { text: "Dashboard", icon: <Dashboard /> },
-  { text: "Partners", icon: <People /> },
-  { text: "Chat", icon: <Chat /> },
-  { text: "Trucks", icon: <LocalShipping /> },
-  { text: "Requests", icon: <Assignment /> },
-  { text: "Reports", icon: <BarChart /> },
+  { text: "Dashboard", icon: <Dashboard />, path: "/dashboard" },
+  { text: "Partners", icon: <People />, path: "/dashboard/partners" },
+  { text: "Chat", icon: <Chat />, path: "/chat" },
+  { text: "Trucks", icon: <LocalShipping />, path: "/dashboard/trucks" },
+  { text: "Requests", icon: <Assignment />, path: "/dashboard/requests" },
+  { text: "Reports", icon: <BarChart />, path: "/dashboard/reports" },
 ];
 
 export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
+  const pathname = usePathname();
+
   const drawerContent = (
     <Box
       sx={{
@@ -47,7 +51,6 @@ export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
         color: "#000",
       }}
     >
-      {/* 1. Logo/Brand Section */}
       <Box
         sx={{
           display: "flex",
@@ -62,21 +65,28 @@ export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
         </Typography>
       </Box>
 
-      {/* 2. Menu Section */}
       <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
         <List>
-          {menuItems.map((item) => (
-            <ListItem key={item.text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: "#012a66" }}>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {menuItems.map((item) => {
+            const isActive = pathname === item.path;
+
+            return (
+              <ListItem key={item.text} disablePadding>
+                <Link
+                  href={item.path}
+                  style={{ textDecoration: "none", color: "inherit", width: "100%" }}
+                >
+                  <ListItemButton selected={isActive}>
+                    <ListItemIcon sx={{ color: "#012a66" }}>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+            );
+          })}
         </List>
       </Box>
 
-      {/* 3. Profile Card Section */}
       <Box
         sx={{
           borderTop: "1px solid #e0e0e0",
@@ -84,10 +94,9 @@ export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          {/* Replace this with the actual user profile image URL */}
           <Box
             component="img"
-            src="/images/profile.jpg"
+            src="/assets/dashboard/profile/man-profile.png"
             alt="Profile"
             sx={{ width: 40, height: 40, borderRadius: "50%", mr: 2 }}
           />
@@ -106,7 +115,6 @@ export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
 
   return (
     <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
-      {/* Mobile Sidebar */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
