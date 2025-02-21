@@ -21,11 +21,11 @@ const meta: Meta<ButtonProps> = {
   },
   argTypes: {
     intent: {
-      options: ["primary", "secondary", "danger"],
+      options: ["primary", "secondary", "danger", "outline"],
       control: { type: "select" },
     },
     size: {
-      options: ["sm", "lg"],
+      options: ["sm", "md", "lg"],
       control: { type: "select" },
     },
     underline: {
@@ -33,7 +33,8 @@ const meta: Meta<ButtonProps> = {
     },
     href: {
       control: "text",
-      description: "Set a URL to render as an anchor (`<a>`), otherwise it renders as a button.",
+      description:
+        "Set a URL to render as a link (using Next.js Link for internal routes or `<a>` for external links).",
     },
     loading: {
       control: "boolean",
@@ -81,6 +82,13 @@ export const DangerButton: Story = {
     intent: "danger",
     children: "Delete",
     startIcon: <Delete />,
+  },
+}
+
+export const OutlineButton: Story = {
+  args: {
+    intent: "outline",
+    children: "Outline Button",
   },
 }
 

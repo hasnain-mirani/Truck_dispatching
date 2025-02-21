@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { ClickableCard, ClickableCardProps } from "./ClickableCard";
+import type { Meta, StoryObj } from "@storybook/react"
+import { ClickableCard, ClickableCardProps } from "./ClickableCard"
 
 const meta: Meta<ClickableCardProps> = {
   title: "Components/ClickableCard",
@@ -22,28 +22,26 @@ const meta: Meta<ClickableCardProps> = {
     },
     href: {
       control: "text",
-      description:
-        "If provided, the card navigates to this URL when clicked (uses Next.js Link).",
+      description: "If provided, the card navigates to this URL when clicked (uses Next.js Link).",
     },
     onClick: {
       action: "clicked",
-      description:
-        "If provided (and href is not), a custom callback is fired on card click.",
+      description: "If provided (and href is not), a custom callback is fired on card click.",
     },
     sx: {
       control: false,
       description: "MUI's sx prop for custom styling.",
     },
   },
-};
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<ClickableCardProps>;
+type Story = StoryObj<ClickableCardProps>
 
 export const Default: Story = {
   args: {},
-};
+}
 
 export const WithHref: Story = {
   args: {
@@ -51,7 +49,7 @@ export const WithHref: Story = {
     image: "https://cdn.worldvectorlogo.com/logos/ups-logo-1.svg",
     href: "/fleet/ups",
   },
-};
+}
 
 export const WithOnClick: Story = {
   args: {
@@ -59,7 +57,7 @@ export const WithOnClick: Story = {
     image: "https://cdn.worldvectorlogo.com/logos/fedex-express-6.svg",
     onClick: () => alert("Card clicked!"),
   },
-};
+}
 
 export const CustomStyling: Story = {
   args: {
@@ -67,4 +65,4 @@ export const CustomStyling: Story = {
     image: "https://cdn.worldvectorlogo.com/logos/aramex-logo-1.svg",
     sx: { width: 300 },
   },
-};
+}

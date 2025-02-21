@@ -1,31 +1,26 @@
-"use client";
+"use client"
 
-import { Menu } from "@mui/icons-material";
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
-import { usePathname } from "next/navigation";
-import React from "react";
-import { Button, ButtonProps } from "components/Button/Button";
+import { Menu } from "@mui/icons-material"
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
+import { usePathname } from "next/navigation"
+import React from "react"
+import { Button, ButtonProps } from "components/Button/Button"
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 export interface TopBarActionButtonProps extends Omit<ButtonProps, "children"> {
-  label: React.ReactNode;
+  label: React.ReactNode
 }
 
 export interface TopBarProps {
-  handleDrawerToggle: () => void;
-  pageTitle?: string;
-  actionButton?: TopBarActionButtonProps;
-  buttonPosition?: "left" | "right";
+  handleDrawerToggle: () => void
+  pageTitle?: string
+  actionButton?: TopBarActionButtonProps
+  buttonPosition?: "left" | "right"
 }
 
-export function TopBar({
-  handleDrawerToggle,
-  pageTitle,
-  actionButton,
-  buttonPosition = "right",
-}: TopBarProps) {
-  const pathname = usePathname();
+export function TopBar({ handleDrawerToggle, pageTitle, actionButton, buttonPosition = "right" }: TopBarProps) {
+  const pathname = usePathname()
 
   const defaultTitles: Record<string, string> = {
     "/dashboard": "Dashboard",
@@ -34,7 +29,7 @@ export function TopBar({
     "/dashboard/trucks": "Trucks",
     "/dashboard/requests": "Requests",
     "/dashboard/reports": "Reports",
-  };
+  }
 
   const defaultActionButtons: Record<string, TopBarActionButtonProps | undefined> = {
     "/dashboard/partners": {
@@ -43,10 +38,10 @@ export function TopBar({
       intent: "primary",
       size: "md",
     },
-  };
+  }
 
-  const title = pageTitle || defaultTitles[pathname] || "Dashboard";
-  const btn = actionButton || defaultActionButtons[pathname];
+  const title = pageTitle || defaultTitles[pathname] || "Dashboard"
+  const btn = actionButton || defaultActionButtons[pathname]
 
   return (
     <AppBar
@@ -89,5 +84,5 @@ export function TopBar({
         </Box>
       </Toolbar>
     </AppBar>
-  );
+  )
 }

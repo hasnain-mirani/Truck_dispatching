@@ -1,39 +1,32 @@
-"use client";
+"use client"
 
-import { Box, Card, CardActionArea, CardMedia, CardProps, Typography } from "@mui/material";
-import Link from "next/link";
-import React from "react";
+import { Box, Card, CardActionArea, CardMedia, CardProps, Typography } from "@mui/material"
+import Link from "next/link"
+import React from "react"
 
 export interface ClickableCardProps extends Omit<CardProps, "onClick"> {
   /** Image URL for the card (e.g., brand logo) */
-  image: string;
+  image: string
   /** Title or label to display in the bottom overlay (e.g., "12 Trucks") */
-  title: string;
-  /** 
-   * URL for navigation. 
+  title: string
+  /**
+   * URL for navigation.
    * If provided, the card uses <Link> to navigate on click.
    * If omitted, the card is non-clickable (unless onClick is used).
    */
-  href?: string;
+  href?: string
   /**
    * Optional onClick callback if you prefer a custom click handler.
    * If both href and onClick are provided, href takes precedence.
    */
-  onClick?: () => void;
+  onClick?: () => void
 }
 
 /**
  * A reusable, dynamic, and production-ready clickable card
  * that displays an image with a bottom overlay title.
  */
-export function ClickableCard({
-  image,
-  title,
-  href,
-  onClick,
-  sx,
-  ...props
-}: ClickableCardProps) {
+export function ClickableCard({ image, title, href, onClick, sx, ...props }: ClickableCardProps) {
   // Card content (image + overlay)
   const cardContent = (
     <>
@@ -61,12 +54,10 @@ export function ClickableCard({
         </Typography>
       </Box>
     </>
-  );
+  )
 
   // Decide how the card should render based on href or onClick
-  let actionAreaContent = (
-    <CardActionArea>{cardContent}</CardActionArea>
-  );
+  let actionAreaContent = <CardActionArea>{cardContent}</CardActionArea>
 
   if (href) {
     // If an href is provided, wrap the content in Next.js <Link>
@@ -74,12 +65,10 @@ export function ClickableCard({
       <Link href={href} style={{ textDecoration: "none" }}>
         <CardActionArea component="div">{cardContent}</CardActionArea>
       </Link>
-    );
+    )
   } else if (onClick) {
     // If onClick is provided but no href, CardActionArea calls onClick directly
-    actionAreaContent = (
-      <CardActionArea onClick={onClick}>{cardContent}</CardActionArea>
-    );
+    actionAreaContent = <CardActionArea onClick={onClick}>{cardContent}</CardActionArea>
   }
 
   return (
@@ -94,5 +83,5 @@ export function ClickableCard({
     >
       {actionAreaContent}
     </Card>
-  );
+  )
 }

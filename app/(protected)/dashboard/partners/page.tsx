@@ -1,21 +1,21 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { Metadata } from "next";
-import { ClickableCard } from "components/ClickableCard/ClickableCard";
+import { Box, Grid } from "@mui/material"
+import { Metadata } from "next"
+import { ClickableCard } from "components/ClickableCard/ClickableCard"
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Partners - Truckvise",
   twitter: {
     card: "summary_large_image",
   },
-};
+}
 
 interface Partner {
-  id: string;
-  name: string;
-  trucksCount: number;
-  logoUrl: string;
+  id: string
+  name: string
+  trucksCount: number
+  logoUrl: string
 }
 
 async function getPartners(): Promise<Partner[]> {
@@ -48,28 +48,14 @@ async function getPartners(): Promise<Partner[]> {
       trucksCount: 50,
       logoUrl: "/assets/dashboard/partners/3d-trucks.jpg",
     },
-  ];
+  ]
 }
 
 export default async function PartnersPage() {
-  const partners = await getPartners();
+  const partners = await getPartners()
 
   return (
     <Box>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={2}
-      >
-        <Typography variant="h4" fontWeight="bold">
-          Partners
-        </Typography>
-        <Button variant="contained" color="primary">
-          Add Partner
-        </Button>
-      </Box>
-
       <Grid container spacing={2}>
         {partners.map((partner) => (
           <Grid item key={partner.id}>
@@ -83,5 +69,5 @@ export default async function PartnersPage() {
         ))}
       </Grid>
     </Box>
-  );
+  )
 }

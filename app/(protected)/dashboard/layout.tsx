@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { DashboardLayout } from "components/Layouts/DashboardLayout";
+import { DashboardLayout } from "components/Layouts/DashboardLayout"
 
 interface DashboardRootLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export default function DashboardRootLayout({ children }: DashboardRootLayoutProps) {
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return <DashboardLayout>{children}</DashboardLayout>
 }

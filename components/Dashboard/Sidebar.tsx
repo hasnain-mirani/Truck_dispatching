@@ -1,31 +1,15 @@
-"use client";
+"use client"
 
-import {
-  Assignment,
-  BarChart,
-  Chat,
-  Dashboard,
-  LocalShipping,
-  People,
-} from "@mui/icons-material";
-import {
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from "@mui/material";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Assignment, BarChart, Chat, Dashboard, LocalShipping, People } from "@mui/icons-material"
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 interface SidebarProps {
-  mobileOpen: boolean;
-  handleDrawerToggle: () => void;
+  mobileOpen: boolean
+  handleDrawerToggle: () => void
 }
 
 const menuItems = [
@@ -35,10 +19,10 @@ const menuItems = [
   { text: "Trucks", icon: <LocalShipping />, path: "/dashboard/trucks" },
   { text: "Requests", icon: <Assignment />, path: "/dashboard/requests" },
   { text: "Reports", icon: <BarChart />, path: "/dashboard/reports" },
-];
+]
 
 export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   const drawerContent = (
     <Box
@@ -68,21 +52,18 @@ export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
       <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
         <List>
           {menuItems.map((item) => {
-            const isActive = pathname === item.path;
+            const isActive = pathname === item.path
 
             return (
               <ListItem key={item.text} disablePadding>
-                <Link
-                  href={item.path}
-                  style={{ textDecoration: "none", color: "inherit", width: "100%" }}
-                >
+                <Link href={item.path} style={{ textDecoration: "none", color: "inherit", width: "100%" }}>
                   <ListItemButton selected={isActive}>
                     <ListItemIcon sx={{ color: "#012a66" }}>{item.icon}</ListItemIcon>
                     <ListItemText primary={item.text} />
                   </ListItemButton>
                 </Link>
               </ListItem>
-            );
+            )
           })}
         </List>
       </Box>
@@ -111,7 +92,7 @@ export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
         </Box>
       </Box>
     </Box>
-  );
+  )
 
   return (
     <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
@@ -129,5 +110,5 @@ export function Sidebar({ mobileOpen, handleDrawerToggle }: SidebarProps) {
         {drawerContent}
       </Drawer>
     </Box>
-  );
+  )
 }
