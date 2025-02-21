@@ -1,30 +1,21 @@
-"use client";
+"use client"
 
-import { DirectionsCar, Warning, Wifi } from "@mui/icons-material";
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  SxProps,
-  Theme,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import { DirectionsCar, Warning, Wifi } from "@mui/icons-material"
+import { Box, Card, CardActionArea, CardContent, CardMedia, SxProps, Theme, Typography } from "@mui/material"
+import React from "react"
 
-export type TruckStatus = "on-route" | "idle" | "out-of-service";
+export type TruckStatus = "on-route" | "idle" | "out-of-service"
 
 export interface TruckCardProps {
-  identifier: string;
-  type: string;
-  imageUrl: string;
-  capacity?: string;
-  wheels?: string;
-  status: TruckStatus;
-  cardWidth?: number;
-  onClick?: () => void;
-  sx?: SxProps<Theme>;
+  identifier: string
+  type: string
+  imageUrl: string
+  capacity?: string
+  wheels?: string
+  status: TruckStatus
+  cardWidth?: number
+  onClick?: () => void
+  sx?: SxProps<Theme>
 }
 
 export function TruckCard({
@@ -38,26 +29,25 @@ export function TruckCard({
   onClick,
   sx,
 }: TruckCardProps) {
-  const statusInfo: Record<TruckStatus, { label: string; color: string; icon: React.ReactNode }> =
-    {
-      "on-route": {
-        label: "On Route",
-        color: "#0288d1",
-        icon: <DirectionsCar fontSize="small" />,
-      },
-      idle: {
-        label: "Idle",
-        color: "#f57c00",
-        icon: <Wifi fontSize="small" />,
-      },
-      "out-of-service": {
-        label: "Out of Service",
-        color: "#d32f2f",
-        icon: <Warning fontSize="small" />,
-      },
-    };
+  const statusInfo: Record<TruckStatus, { label: string; color: string; icon: React.ReactNode }> = {
+    "on-route": {
+      label: "On Route",
+      color: "#0288d1",
+      icon: <DirectionsCar fontSize="small" />,
+    },
+    idle: {
+      label: "Idle",
+      color: "#f57c00",
+      icon: <Wifi fontSize="small" />,
+    },
+    "out-of-service": {
+      label: "Out of Service",
+      color: "#d32f2f",
+      icon: <Warning fontSize="small" />,
+    },
+  }
 
-  const { label: statusLabel, color: statusColor, icon: statusIcon } = statusInfo[status];
+  const { label: statusLabel, color: statusColor, icon: statusIcon } = statusInfo[status]
 
   return (
     <Card
@@ -73,17 +63,8 @@ export function TruckCard({
         ...sx,
       }}
     >
-      <CardActionArea
-        onClick={onClick}
-        sx={{ display: "block", width: "100%", height: "100%" }}
-      >
-
-        <CardMedia
-          component="img"
-          src={imageUrl}
-          alt={identifier}
-          sx={{ height: 160, objectFit: "cover" }}
-        />
+      <CardActionArea onClick={onClick} sx={{ display: "block", width: "100%", height: "100%" }}>
+        <CardMedia component="img" src={imageUrl} alt={identifier} sx={{ height: 160, objectFit: "cover" }} />
 
         <CardContent sx={{ p: 2 }}>
           <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
@@ -117,5 +98,5 @@ export function TruckCard({
         </CardContent>
       </CardActionArea>
     </Card>
-  );
+  )
 }

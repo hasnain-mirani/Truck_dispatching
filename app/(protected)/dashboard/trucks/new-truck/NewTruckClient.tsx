@@ -120,15 +120,10 @@ export default function NewTruckClient() {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Card sx={{  mx: "auto" }}>
+      <Card sx={{ mx: "auto" }}>
         <CardContent>
           <Grid container spacing={2}>
-            <Grid
-              item
-              xs={12}
-              md={4}
-              
-            >
+            <Grid item xs={12} md={4}>
               <Box
                 sx={{
                   display: "flex",

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { TruckCard, TruckCardProps } from "./TruckCard";
+import type { Meta, StoryObj } from "@storybook/react"
+import { TruckCard, TruckCardProps } from "./TruckCard"
 
 const meta: Meta<TruckCardProps> = {
   title: "Components/TruckCard",
@@ -28,8 +28,7 @@ const meta: Meta<TruckCardProps> = {
     },
     imageUrl: {
       control: "text",
-      description:
-        "URL of the truck image displayed at the top of the card.",
+      description: "URL of the truck image displayed at the top of the card.",
     },
     capacity: {
       control: "text",
@@ -42,8 +41,7 @@ const meta: Meta<TruckCardProps> = {
     status: {
       control: "select",
       options: ["on-route", "idle", "out-of-service"],
-      description:
-        "Operational status of the truck (on-route, idle, or out-of-service).",
+      description: "Operational status of the truck (on-route, idle, or out-of-service).",
     },
     sx: {
       control: false,
@@ -51,16 +49,15 @@ const meta: Meta<TruckCardProps> = {
     },
     onClick: {
       action: "clicked",
-      description:
-        "Fires when the card is clicked. This makes the card hoverable and clickable.",
+      description: "Fires when the card is clicked. This makes the card hoverable and clickable.",
     },
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<TruckCardProps>;
+export default meta
+type Story = StoryObj<TruckCardProps>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
 export const OnRoute: Story = {
   args: {
@@ -71,7 +68,7 @@ export const OnRoute: Story = {
     imageUrl:
       "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
   },
-};
+}
 
 export const OutOfService: Story = {
   args: {
@@ -82,7 +79,7 @@ export const OutOfService: Story = {
     imageUrl:
       "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
   },
-};
+}
 
 export const MinimalInfo: Story = {
   args: {
@@ -94,10 +91,10 @@ export const MinimalInfo: Story = {
     capacity: undefined,
     wheels: undefined,
   },
-};
+}
 
 export const Clickable: Story = {
   args: {
     onClick: () => alert("Truck card clicked!"),
   },
-};
+}

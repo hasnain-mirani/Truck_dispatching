@@ -1,40 +1,40 @@
-"use client";
+"use client"
 
-import { Box, Grid } from "@mui/material";
-import React, { useState } from "react";
-import { TagChip } from "components/TagChip/TagChip";
-import { TextField } from "components/TextField/TextField";
-import { TruckCard } from "components/TruckCard/TruckCard";
-import type { TruckCardData } from "./page";
+import { Box, Grid } from "@mui/material"
+import React, { useState } from "react"
+import { TagChip } from "components/TagChip/TagChip"
+import { TextField } from "components/TextField/TextField"
+import { TruckCard } from "components/TruckCard/TruckCard"
+import type { TruckCardData } from "./page"
 
-const partnerChips = ["DHL", "UPS", "FedEx", "Freelancers", "Truckvise"];
+const partnerChips = ["DHL", "UPS", "FedEx", "Freelancers", "Truckvise"]
 
 interface TrucksClientProps {
-  trucks: TruckCardData[];
+  trucks: TruckCardData[]
 }
 
 export default function TrucksClient({ trucks }: TrucksClientProps) {
-  const [data] = useState<TruckCardData[]>(trucks);
+  const [data] = useState<TruckCardData[]>(trucks)
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedPartner, setSelectedPartner] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedPartner, setSelectedPartner] = useState<string | null>(null)
 
   const filteredData = data.filter((truck) => {
     const matchesSearch =
       truck.identifier.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      truck.type.toLowerCase().includes(searchQuery.toLowerCase());
+      truck.type.toLowerCase().includes(searchQuery.toLowerCase())
 
     if (selectedPartner) {
-      const matchesPartner = truck.partner.toLowerCase() === selectedPartner.toLowerCase();
-      return matchesSearch && matchesPartner;
+      const matchesPartner = truck.partner.toLowerCase() === selectedPartner.toLowerCase()
+      return matchesSearch && matchesPartner
     }
 
-    return matchesSearch;
-  });
+    return matchesSearch
+  })
 
   const handleChipClick = (partner: string) => {
-    setSelectedPartner((prev) => (prev === partner ? null : partner));
-  };
+    setSelectedPartner((prev) => (prev === partner ? null : partner))
+  }
 
   return (
     <Box p={2}>
@@ -77,5 +77,5 @@ export default function TrucksClient({ trucks }: TrucksClientProps) {
         ))}
       </Grid>
     </Box>
-  );
+  )
 }

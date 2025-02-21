@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { Box } from "@mui/material";
-import React, { useState } from "react";
-import { DataColumn, DataTable } from "components/Table/DataTable";
-import { TagChip } from "components/TagChip/TagChip";
-import { TextField } from "components/TextField/TextField";
-import type { TruckRow } from "./page";
+import { Box } from "@mui/material"
+import React, { useState } from "react"
+import { DataColumn, DataTable } from "components/Table/DataTable"
+import { TagChip } from "components/TagChip/TagChip"
+import { TextField } from "components/TextField/TextField"
+import type { TruckRow } from "./page"
 
 const columns: DataColumn<TruckRow>[] = [
   { key: "vehicleName", label: "Vehicle Name" },
@@ -24,7 +24,7 @@ const columns: DataColumn<TruckRow>[] = [
   { key: "GVMR", label: "GVMR" },
   { key: "ownership", label: "Ownership" },
   { key: "status", label: "Status" },
-];
+]
 
 const chipItems = [
   { id: "1", label: "DHL", count: 24 },
@@ -32,49 +32,45 @@ const chipItems = [
   { id: "3", label: "FedEx", count: 10 },
   { id: "4", label: "Freelancers", count: 50 },
   { id: "5", label: "Truckvise", count: 25 },
-];
+]
 
 interface TrucksClientProps {
-  trucks: TruckRow[];
+  trucks: TruckRow[]
 }
 
 export default function TrucksClient({ trucks }: TrucksClientProps) {
-  const [data, setData] = useState<TruckRow[]>(trucks);
+  const [data, setData] = useState<TruckRow[]>(trucks)
 
-  const [selectedChip, setSelectedChip] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedChip, setSelectedChip] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const handleEdit = (row: TruckRow) => {
-    alert(`Edit clicked for: ${row.vehicleName}`);
-  };
+    alert(`Edit clicked for: ${row.vehicleName}`)
+  }
 
   const handleDelete = (row: TruckRow) => {
-    alert(`Delete clicked for: ${row.vehicleName}`);
-    setData((prev) => prev.filter((item) => item.id !== row.id));
-  };
+    alert(`Delete clicked for: ${row.vehicleName}`)
+    setData((prev) => prev.filter((item) => item.id !== row.id))
+  }
 
   const filteredData = data.filter((row) => {
-    const matchesSearch = row.vehicleName
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const matchesSearch = row.vehicleName.toLowerCase().includes(searchQuery.toLowerCase())
 
     if (selectedChip) {
-      const matchesChip = row.vehicleName
-        .toLowerCase()
-        .includes(selectedChip.toLowerCase());
-      return matchesSearch && matchesChip;
+      const matchesChip = row.vehicleName.toLowerCase().includes(selectedChip.toLowerCase())
+      return matchesSearch && matchesChip
     }
 
-    return matchesSearch;
-  });
+    return matchesSearch
+  })
 
   const handleChipClick = (label: string) => {
     if (selectedChip === label) {
-      setSelectedChip(null);
+      setSelectedChip(null)
     } else {
-      setSelectedChip(label);
+      setSelectedChip(label)
     }
-  };
+  }
 
   return (
     <Box p={2}>
@@ -95,8 +91,7 @@ export default function TrucksClient({ trucks }: TrucksClientProps) {
             label={chip.label}
             onClick={() => handleChipClick(chip.label)}
             sx={{
-              bgcolor:
-                selectedChip === chip.label ? "#cfcfcf" : "#e3e3e3",
+              bgcolor: selectedChip === chip.label ? "#cfcfcf" : "#e3e3e3",
               cursor: "pointer",
             }}
           />
@@ -112,5 +107,5 @@ export default function TrucksClient({ trucks }: TrucksClientProps) {
         sx={{ minWidth: 900 }}
       />
     </Box>
-  );
+  )
 }

@@ -1,91 +1,81 @@
-"use client";
+"use client"
 
-import { CloudDownload } from "@mui/icons-material";
-import {
-  Box,
-  Card,
-  CardContent,
-  FormControlLabel,
-  Grid,
-  Button as MuiButton,
-  Switch,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { CloudDownload } from "@mui/icons-material"
+import { Box, Card, CardContent, FormControlLabel, Grid, Button as MuiButton, Switch, Typography } from "@mui/material"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import React, { useState } from "react"
 
-import { Button } from "components/Button/Button";
-import { TextField } from "components/TextField/TextField";
+import { Button } from "components/Button/Button"
+import { TextField } from "components/TextField/TextField"
 
 export default function NewDriverClient() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [driverPhoto, setDriverPhoto] = useState<File | null>(null);
+  const [driverPhoto, setDriverPhoto] = useState<File | null>(null)
 
-  const [country, setCountry] = useState("");
-  const [province, setProvince] = useState("");
-  const [city, setCity] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [experience, setExperience] = useState("");
-  const [designation, setDesignation] = useState("");
-  const [canDrive, setCanDrive] = useState("4, 6, 12"); // e.g. "4,6,12"
-  const [hasHealthInsurance, setHasHealthInsurance] = useState(false);
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [assignedTruck, setAssignedTruck] = useState("");
+  const [country, setCountry] = useState("")
+  const [province, setProvince] = useState("")
+  const [city, setCity] = useState("")
+  const [fullName, setFullName] = useState("")
+  const [experience, setExperience] = useState("")
+  const [designation, setDesignation] = useState("")
+  const [canDrive, setCanDrive] = useState("4, 6, 12") // e.g. "4,6,12"
+  const [hasHealthInsurance, setHasHealthInsurance] = useState(false)
+  const [dateOfBirth, setDateOfBirth] = useState("")
+  const [assignedTruck, setAssignedTruck] = useState("")
 
-  const [drivingLicenseFile, setDrivingLicenseFile] = useState<File | null>(null);
-  const [healthInsuranceFile, setHealthInsuranceFile] = useState<File | null>(null);
+  const [drivingLicenseFile, setDrivingLicenseFile] = useState<File | null>(null)
+  const [healthInsuranceFile, setHealthInsuranceFile] = useState<File | null>(null)
 
   const handleDriverPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
+      const file = e.target.files[0]
       if (file) {
-        setDriverPhoto(file);
+        setDriverPhoto(file)
       }
     }
-  };
+  }
   const handleDrivingLicenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-        const file = e.target.files[0];
+      const file = e.target.files[0]
       if (file) {
-      setDrivingLicenseFile(file);
+        setDrivingLicenseFile(file)
       }
     }
-  };
+  }
   const handleHealthInsuranceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-        const file = e.target.files[0];
+      const file = e.target.files[0]
       if (file) {
-        setHealthInsuranceFile(file);
+        setHealthInsuranceFile(file)
       }
-      
     }
-  };
+  }
 
   const handleSave = async () => {
     try {
-      const formData = new FormData();
+      const formData = new FormData()
 
-      formData.append("country", country);
-      formData.append("province", province);
-      formData.append("city", city);
-      formData.append("fullName", fullName);
-      formData.append("experience", experience);
-      formData.append("designation", designation);
-      formData.append("canDrive", canDrive);
-      formData.append("hasHealthInsurance", String(hasHealthInsurance));
-      formData.append("dateOfBirth", dateOfBirth);
-      formData.append("assignedTruck", assignedTruck);
+      formData.append("country", country)
+      formData.append("province", province)
+      formData.append("city", city)
+      formData.append("fullName", fullName)
+      formData.append("experience", experience)
+      formData.append("designation", designation)
+      formData.append("canDrive", canDrive)
+      formData.append("hasHealthInsurance", String(hasHealthInsurance))
+      formData.append("dateOfBirth", dateOfBirth)
+      formData.append("assignedTruck", assignedTruck)
 
       if (driverPhoto) {
-        formData.append("driverPhoto", driverPhoto);
+        formData.append("driverPhoto", driverPhoto)
       }
       if (drivingLicenseFile) {
-        formData.append("drivingLicense", drivingLicenseFile);
+        formData.append("drivingLicense", drivingLicenseFile)
       }
       if (healthInsuranceFile) {
-        formData.append("healthInsurance", healthInsuranceFile);
+        formData.append("healthInsurance", healthInsuranceFile)
       }
 
       // const res = await fetch("/api/drivers", {
@@ -96,11 +86,11 @@ export default function NewDriverClient() {
       //   throw new Error("Failed to save driver");
       // }
 
-      router.push("/dashboard/drivers");
+      router.push("/dashboard/drivers")
     } catch (error) {
-      console.error("Error saving driver:", error);
+      console.error("Error saving driver:", error)
     }
-  };
+  }
 
   return (
     <Box sx={{ p: 2 }}>
@@ -159,12 +149,7 @@ export default function NewDriverClient() {
             <Grid item xs={12} md={8}>
               <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
-                  <TextField
-                    fullWidth
-                    label="Country"
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                  />
+                  <TextField fullWidth label="Country" value={country} onChange={(e) => setCountry(e.target.value)} />
                 </Grid>
                 <Grid item xs={12} md={4}>
                   <TextField
@@ -175,12 +160,7 @@ export default function NewDriverClient() {
                   />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <TextField
-                    fullWidth
-                    label="City"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                  />
+                  <TextField fullWidth label="City" value={city} onChange={(e) => setCity(e.target.value)} />
                 </Grid>
 
                 <Grid item xs={12} md={4}>
@@ -220,10 +200,7 @@ export default function NewDriverClient() {
                   <FormControlLabel
                     label="Health Insurance"
                     control={
-                      <Switch
-                        checked={hasHealthInsurance}
-                        onChange={(e) => setHasHealthInsurance(e.target.checked)}
-                      />
+                      <Switch checked={hasHealthInsurance} onChange={(e) => setHasHealthInsurance(e.target.checked)} />
                     }
                   />
                 </Grid>
@@ -239,18 +216,9 @@ export default function NewDriverClient() {
                 </Grid>
 
                 <Grid item xs={12} md={4}>
-                  <MuiButton
-                    variant="outlined"
-                    component="label"
-                    startIcon={<CloudDownload />}
-                  >
+                  <MuiButton variant="outlined" component="label" startIcon={<CloudDownload />}>
                     Upload Driving License
-                    <input
-                      hidden
-                      accept="application/pdf"
-                      type="file"
-                      onChange={handleDrivingLicenseChange}
-                    />
+                    <input hidden accept="application/pdf" type="file" onChange={handleDrivingLicenseChange} />
                   </MuiButton>
                   {drivingLicenseFile && (
                     <Typography variant="body2" mt={1}>
@@ -259,18 +227,9 @@ export default function NewDriverClient() {
                   )}
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <MuiButton
-                    variant="outlined"
-                    component="label"
-                    startIcon={<CloudDownload />}
-                  >
+                  <MuiButton variant="outlined" component="label" startIcon={<CloudDownload />}>
                     Upload Health Insurance
-                    <input
-                      hidden
-                      accept="application/pdf"
-                      type="file"
-                      onChange={handleHealthInsuranceChange}
-                    />
+                    <input hidden accept="application/pdf" type="file" onChange={handleHealthInsuranceChange} />
                   </MuiButton>
                   {healthInsuranceFile && (
                     <Typography variant="body2" mt={1}>
@@ -303,5 +262,5 @@ export default function NewDriverClient() {
         </CardContent>
       </Card>
     </Box>
-  );
+  )
 }

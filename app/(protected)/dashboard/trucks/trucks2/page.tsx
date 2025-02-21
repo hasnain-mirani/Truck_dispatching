@@ -1,22 +1,22 @@
-import { Metadata } from "next";
-import TrucksClient from "./TrucksClient";
+import { Metadata } from "next"
+import TrucksClient from "./TrucksClient"
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Trucks - Truckvise",
   description: "View and manage trucks with filtering and searching.",
-};
+}
 
 export interface TruckCardData {
-  id: string;
-  identifier: string;
-  type: string;
-  imageUrl: string;
-  capacity?: string;
-  wheels?: string;
-  status: "on-route" | "idle" | "out-of-service";
-  partner: string;
+  id: string
+  identifier: string
+  type: string
+  imageUrl: string
+  capacity?: string
+  wheels?: string
+  status: "on-route" | "idle" | "out-of-service"
+  partner: string
 }
 
 async function getTrucks(): Promise<TruckCardData[]> {
@@ -29,7 +29,8 @@ async function getTrucks(): Promise<TruckCardData[]> {
       id: "1",
       identifier: "UPS-34DFR734W2",
       type: "RAM PICKUP TRUCK",
-      imageUrl: "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
+      imageUrl:
+        "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
       capacity: "1000kg total capacity",
       wheels: "4 wheels",
       status: "idle",
@@ -39,7 +40,8 @@ async function getTrucks(): Promise<TruckCardData[]> {
       id: "2",
       identifier: "DHL-34DFR734W2",
       type: "FORD PICKUP TRUCK",
-      imageUrl: "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
+      imageUrl:
+        "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
       capacity: "1000kg total capacity",
       wheels: "4 wheels",
       status: "on-route",
@@ -49,7 +51,8 @@ async function getTrucks(): Promise<TruckCardData[]> {
       id: "3",
       identifier: "FEDEX-34DFR734W2",
       type: "RAM PICKUP TRUCK",
-      imageUrl: "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
+      imageUrl:
+        "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
       capacity: "1000kg total capacity",
       wheels: "4 wheels",
       status: "out-of-service",
@@ -59,16 +62,17 @@ async function getTrucks(): Promise<TruckCardData[]> {
       id: "4",
       identifier: "UPS-ABCD1234",
       type: "RAM PICKUP TRUCK",
-      imageUrl: "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
+      imageUrl:
+        "https://www.ramtrucks.com/content/dam/fca-brands/na/ramtrucks/en_us/2025/ram-1500/gallery/desktop/my25-ram-1500-gallery-open-6-d.jpg.image.1440.jpg",
       capacity: "2000kg total capacity",
       wheels: "4 wheels",
       status: "idle",
       partner: "UPS",
     },
-  ];
+  ]
 }
 
 export default async function TrucksPage() {
-  const trucks = await getTrucks();
-  return <TrucksClient trucks={trucks} />;
+  const trucks = await getTrucks()
+  return <TrucksClient trucks={trucks} />
 }

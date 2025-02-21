@@ -1,21 +1,21 @@
-import { Metadata } from "next";
-import DriversClient from "./DriversClient";
+import { Metadata } from "next"
+import DriversClient from "./DriversClient"
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Drivers - Truckvise",
   description: "View and search drivers.",
-};
+}
 
 export interface DriverRow {
-  id: string;
-  driverName: string;
-  location: string;
-  experience: number;
-  assignedTruck: string;
-  driverInsurance: string;
-  designation: string;
+  id: string
+  driverName: string
+  location: string
+  experience: number
+  assignedTruck: string
+  driverInsurance: string
+  designation: string
 }
 
 async function getDrivers(): Promise<DriverRow[]> {
@@ -69,10 +69,10 @@ async function getDrivers(): Promise<DriverRow[]> {
       driverInsurance: "Yes",
       designation: "Employee",
     },
-  ];
+  ]
 }
 
 export default async function DriversPage() {
-  const drivers = await getDrivers();
-  return <DriversClient drivers={drivers} />;
+  const drivers = await getDrivers()
+  return <DriversClient drivers={drivers} />
 }
