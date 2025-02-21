@@ -82,6 +82,10 @@ export default function NewPartnerClient() {
                   flexDirection: "column",
                   alignItems: "center",
                   gap: 2,
+                  borderRight: {
+                    xs: "none",
+                    md: "2px solid #e0e0e0",
+                  },
                 }}
               >
                 <Box
