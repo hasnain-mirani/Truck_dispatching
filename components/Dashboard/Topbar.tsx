@@ -38,6 +38,12 @@ export function TopBar({ handleDrawerToggle, pageTitle, actionButton, buttonPosi
       intent: "primary",
       size: "md",
     },
+    "/dashboard/trucks": {
+      label: "Add Truck",
+      href: "/dashboard/trucks/new-truck",
+      intent: "primary",
+      size: "md",
+    },
   }
 
   const title = pageTitle || defaultTitles[pathname] || "Dashboard"
