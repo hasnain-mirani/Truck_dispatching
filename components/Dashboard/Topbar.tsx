@@ -1,6 +1,6 @@
 "use client"
 
-import { Menu } from "@mui/icons-material"
+import { Add, ChevronLeft, Menu } from "@mui/icons-material"
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
 import { usePathname } from "next/navigation"
 import React from "react"
@@ -25,8 +25,11 @@ export function TopBar({ handleDrawerToggle, pageTitle, actionButton, buttonPosi
   const defaultTitles: Record<string, string> = {
     "/dashboard": "Dashboard",
     "/dashboard/partners": "Partners",
+    "/dashboard/partners/new-partner": "Add new partner",
     "/dashboard/chat": "Chat",
     "/dashboard/trucks": "Trucks",
+    "/dashboard/trucks/trucks2": "Trucks",
+    "/dashboard/trucks/new-truck": "Add new truck",
     "/dashboard/requests": "Requests",
     "/dashboard/reports": "Reports",
   }
@@ -35,13 +38,36 @@ export function TopBar({ handleDrawerToggle, pageTitle, actionButton, buttonPosi
     "/dashboard/partners": {
       label: "Add Partner",
       href: "/dashboard/partners/new-partner",
-      intent: "primary",
+      intent: "secondary",
+      size: "md",
+      startIcon: <Add />,
+    },
+    "/dashboard/partners/new-partner": {
+      label: "Partners",
+      startIcon: <ChevronLeft />,
+      href: "/dashboard/partners",
+      intent: "outline",
       size: "md",
     },
     "/dashboard/trucks": {
       label: "Add Truck",
       href: "/dashboard/trucks/new-truck",
-      intent: "primary",
+      intent: "secondary",
+      size: "md",
+      startIcon: <Add />,
+    },
+    "/dashboard/trucks/trucks2": {
+      label: "Add Truck",
+      href: "/dashboard/trucks/new-truck",
+      intent: "secondary",
+      size: "md",
+      startIcon: <Add />,
+    },
+    "/dashboard/trucks/new-truck": {
+      label: "Get Back",
+      startIcon: <ChevronLeft />,
+      href: "/dashboard/trucks",
+      intent: "outline",
       size: "md",
     },
   }
