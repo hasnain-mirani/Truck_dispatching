@@ -98,6 +98,7 @@ export default function LoginClient() {
           size="lg" 
           fullWidth
           disabled={isLoading}
+          loading={isLoading}
         >
           {isLoading ? "LOGGING IN..." : "LOGIN"}
         </Button>

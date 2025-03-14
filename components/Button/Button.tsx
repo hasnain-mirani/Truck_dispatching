@@ -4,7 +4,7 @@ import { CircularProgress, Button as MuiButton, ButtonProps as MuiButtonProps } 
 import NextLink from "next/link"
 import React from "react"
 
-export type ButtonVariant = "primary" | "secondary" | "danger" | "outline"
+export type ButtonVariant = "primary" | "secondary" | "danger" | "outline" | "link"
 export type ButtonSize = "sm" | "md" | "lg"
 
 export interface ButtonProps extends Omit<MuiButtonProps, "size" | "variant"> {
@@ -80,6 +80,14 @@ export function Button({
       hoverColor: "#fff",
       border: "#012a66",
     },
+    link: {
+      variant: "text",
+      backgroundColor: "transparent",
+      color: "#012a66",
+      hoverBg: "transparent",
+      padding: "unset",
+      margin: "unset",
+    },
   } as const
 
   const currentStyle = styleMap[intent]
@@ -89,7 +97,7 @@ export function Button({
       {...props}
       {...externalProps}
       component={Component}
-      variant={currentStyle.variant as "contained" | "outlined"}
+      variant={currentStyle.variant as "contained" | "outlined" | "text"}
       {...(Component === NextLink ? { href } : {})}
       color="primary"
       size={size === "sm" ? "small" : size === "md" ? "medium" : "large"}
@@ -101,20 +109,20 @@ export function Button({
         borderRadius: 1,
         backgroundColor: currentStyle.backgroundColor,
         color: currentStyle.color,
-        border: currentStyle.border ? `1px solid ${currentStyle.border}` : "none",
-        width: fullWidth ? "100%" : "auto",
+        border: "variant" in currentStyle && currentStyle.variant === "outlined" ? `1px solid ${currentStyle.color}` : "none",
+        width: fullWidth ? "100%" : "auto", 
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         gap: 1,
         "&:hover": {
-          backgroundColor: currentStyle.hoverBg,
-          color: currentStyle.hoverColor || currentStyle.color,
+          backgroundColor: currentStyle.variant === "text" ? "transparent" : currentStyle.hoverBg,
+          color: "hoverColor" in currentStyle ? currentStyle.hoverColor : currentStyle.color,
         },
         "&:disabled": {
           opacity: 0.7,
         },
-        ...props.sx, // allow further overrides via props
+        ...props.sx,
       }}
     >
       {children}

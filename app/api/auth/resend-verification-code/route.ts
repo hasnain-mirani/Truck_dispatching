@@ -3,35 +3,24 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import apiClient from '../../../../utils/apiClient';
 
-export async function POST(request: NextRequest) {
+export async function POST(_request: NextRequest) {
   try {
-    const body = await request.json();
-    const { firstName, lastName, email, password } = body as {
-      firstName: string;
-      lastName: string;
-      email: string;
-      password: string;
-    };
 
-    if (!firstName || !lastName || !email || !password) {
-      return NextResponse.json(
-        { error: 'All fields (firstName, lastName, email, password) are required' },
-        { status: 400 }
-      );
+    const cookieStore = await cookies();
+    const email = cookieStore.get('userEmail')?.value;
+
+    if (!email) {
+      return NextResponse.json({ error: 'Email not found' }, { status: 400 });
     }
 
-    const response = await apiClient.post('/auth/register', {
-      firstName,
-      lastName,
+    const response = await apiClient.post('/auth/resend-verification-code', {
       email,
-      password,
-      role: "FLEET_MANAGER",
     });
     
     const data = response.data as {
       success: boolean;
       message: string;
-      responseObject: { requiresVerification: boolean } | null;
+      responseObject: null;
       statusCode: number;
     };
 
@@ -39,16 +28,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: data.message }, { status: data.statusCode || 400 });
     }
 
-    const cookieStore = await cookies();
-    cookieStore.set('userEmail', email, {
-      path: '/',
-      httpOnly: false,
-      maxAge: 60 * 60, // 1 hour
-    });
-
     return NextResponse.json(data, { status: data.statusCode });
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error('Verification code resend error:', error);
     let errorMessage = 'An unknown error occurred';
     let status = 500;
 
