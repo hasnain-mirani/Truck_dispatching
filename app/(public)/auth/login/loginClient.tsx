@@ -1,24 +1,24 @@
-"use client";
-import { Email, Lock } from "@mui/icons-material";
-import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
-import { TextField } from "components/TextField/TextField";
+"use client"
+import { Email, Lock } from "@mui/icons-material"
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { FormEvent, useState } from "react"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
+import { TextField } from "components/TextField/TextField"
 
 export default function LoginClient() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setIsLoading(true);
+    e.preventDefault()
+    setError("")
+    setIsLoading(true)
 
     try {
       const response = await fetch("/api/auth/login", {
@@ -27,34 +27,33 @@ export default function LoginClient() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-      });
+      })
 
-      const data = await response.json() as { error: string };
+      const data = (await response.json()) as { error: string }
 
       if (!response.ok) {
-        throw new Error(data.error || "Login failed");
+        throw new Error(data.error || "Login failed")
       }
 
-      router.push('/dashboard');
-
+      router.push("/dashboard")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred during login");
+      setError(err instanceof Error ? err.message : "An error occurred during login")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <AuthLayout imageSrc="/assets/auth/login/login.jpg">
-      <Box 
-        component="form" 
+      <Box
+        component="form"
         onSubmit={handleSubmit}
-        sx={{ 
-          display: "flex", 
-          flexDirection: "column", 
-          gap: 2, 
-          width: "100%", 
-          maxWidth: 350 
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          width: "100%",
+          maxWidth: 350,
         }}
       >
         <Typography variant="h5" fontWeight="bold">
@@ -67,20 +66,20 @@ export default function LoginClient() {
           </Typography>
         )}
 
-        <TextField 
-          label="Email ID" 
-          placeholder="e.g. john@example.com" 
+        <TextField
+          label="Email ID"
+          placeholder="e.g. john@example.com"
           startIcon={<Email />}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        
-        <TextField 
-          label="Password" 
-          passwordField 
-          placeholder="Your secret keyword to login" 
+
+        <TextField
+          label="Password"
+          passwordField
+          placeholder="Your secret keyword to login"
           startIcon={<Lock />}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -92,14 +91,7 @@ export default function LoginClient() {
           <Link href="/auth/forgot-password">Forgot password?</Link>
         </Box>
 
-        <Button 
-          type="submit"
-          intent="primary" 
-          size="lg" 
-          fullWidth
-          disabled={isLoading}
-          loading={isLoading}
-        >
+        <Button type="submit" intent="primary" size="lg" fullWidth disabled={isLoading} loading={isLoading}>
           {isLoading ? "LOGGING IN..." : "LOGIN"}
         </Button>
 
@@ -108,5 +100,5 @@ export default function LoginClient() {
         </Typography>
       </Box>
     </AuthLayout>
-  );
+  )
 }

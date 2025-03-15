@@ -109,8 +109,9 @@ export function Button({
         borderRadius: 1,
         backgroundColor: currentStyle.backgroundColor,
         color: currentStyle.color,
-        border: "variant" in currentStyle && currentStyle.variant === "outlined" ? `1px solid ${currentStyle.color}` : "none",
-        width: fullWidth ? "100%" : "auto", 
+        border:
+          "variant" in currentStyle && currentStyle.variant === "outlined" ? `1px solid ${currentStyle.color}` : "none",
+        width: fullWidth ? "100%" : "auto",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

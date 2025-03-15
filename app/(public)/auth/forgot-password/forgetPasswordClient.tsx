@@ -1,29 +1,29 @@
-"use client";
-import { Email } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
-import Link from "next/link";
-import { FormEvent, useState } from "react";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
-import { TextField } from "components/TextField/TextField";
+"use client"
+import { Email } from "@mui/icons-material"
+import { Box, Typography } from "@mui/material"
+import Link from "next/link"
+import { FormEvent, useState } from "react"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
+import { TextField } from "components/TextField/TextField"
 
 export default function ForgotPasswordClient() {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("")
+  const [error, setError] = useState("")
+  const [successMsg, setSuccessMsg] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSuccessMsg("");
+    e.preventDefault()
+    setError("")
+    setSuccessMsg("")
 
     if (!email) {
-      setError("Email is required.");
-      return;
+      setError("Email is required.")
+      return
     }
-    
-    setIsLoading(true);
+
+    setIsLoading(true)
     try {
       const response = await fetch("/api/auth/forgot-password", {
         method: "POST",
@@ -31,20 +31,20 @@ export default function ForgotPasswordClient() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
-      });
+      })
 
-      const data = await response.json() as { error?: string; message?: string };
+      const data = (await response.json()) as { error?: string; message?: string }
       if (!response.ok) {
-        throw new Error(data.error || data.message || "Failed to send reset link");
+        throw new Error(data.error || data.message || "Failed to send reset link")
       }
-      
-      setSuccessMsg("Reset link sent! Please check your email.");
+
+      setSuccessMsg("Reset link sent! Please check your email.")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(err instanceof Error ? err.message : "An error occurred")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <AuthLayout imageSrc="/assets/auth/forgot-password/forgot-password.jpg">
@@ -90,5 +90,5 @@ export default function ForgotPasswordClient() {
         </Typography>
       </Box>
     </AuthLayout>
-  );
+  )
 }

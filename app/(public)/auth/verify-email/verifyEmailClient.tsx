@@ -1,61 +1,61 @@
-"use client";
-import { Box, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
+"use client"
+import { Box, Typography } from "@mui/material"
+import { useRouter } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
 
 export default function VerifyEmailClient() {
-  const [verificationCode, setVerificationCode] = useState(new Array(6).fill(""));
-  const [successMessage, setSuccessMessage] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isResendingVerificationCode, setIsResendingVerificationCode] = useState(false);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const router = useRouter();
+  const [verificationCode, setVerificationCode] = useState(new Array(6).fill(""))
+  const [successMessage, setSuccessMessage] = useState("")
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [isResendingVerificationCode, setIsResendingVerificationCode] = useState(false)
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([])
+  const router = useRouter()
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout
     if (error || successMessage) {
       timeoutId = setTimeout(() => {
-        setError("");
-        setSuccessMessage("");
-      }, 5000);
+        setError("")
+        setSuccessMessage("")
+      }, 5000)
     }
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [error, successMessage]);
+      if (timeoutId) clearTimeout(timeoutId)
+    }
+  }, [error, successMessage])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const { value } = e.target;
-    if (!/^\d*$/.test(value)) return;
-    const newVerificationCode = [...verificationCode];
-    newVerificationCode[index] = value.slice(-1);
-    setVerificationCode(newVerificationCode);
+    const { value } = e.target
+    if (!/^\d*$/.test(value)) return
+    const newVerificationCode = [...verificationCode]
+    newVerificationCode[index] = value.slice(-1)
+    setVerificationCode(newVerificationCode)
 
     if (value && index < verificationCode.length - 1) {
-      inputRefs.current[index + 1]?.focus();
+      inputRefs.current[index + 1]?.focus()
     }
-  };
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
     if (e.key === "Backspace" && !verificationCode[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus();
+      inputRefs.current[index - 1]?.focus()
     }
-  };
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    const verificationCodeString = verificationCode.join("");
+    e.preventDefault()
+    setError("")
+    const verificationCodeString = verificationCode.join("")
 
     if (verificationCodeString.length !== 6) {
-      setError("Please enter a 6-digit verification code.");
-      return;
+      setError("Please enter a 6-digit verification code.")
+      return
     }
 
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       const response = await fetch("/api/auth/verify-email", {
         method: "POST",
@@ -63,37 +63,45 @@ export default function VerifyEmailClient() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ verificationCode: verificationCodeString }),
-      });
-      const data = await response.json();
+      })
+      const data = await response.json()
       if (!response.ok) {
-        throw new Error((data as {error?: string, message?: string}).error || (data as {error?: string, message?: string}).message || "Verification failed");
+        throw new Error(
+          (data as { error?: string; message?: string }).error ||
+            (data as { error?: string; message?: string }).message ||
+            "Verification failed"
+        )
       }
 
-      router.push("/auth/login");
+      router.push("/auth/login")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred during verification");
+      setError(err instanceof Error ? err.message : "An error occurred during verification")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   const handleResendVerificationCode = async () => {
-    setIsResendingVerificationCode(true);
+    setIsResendingVerificationCode(true)
     try {
       const response = await fetch("/api/auth/resend-verification-code", {
         method: "POST",
-      });
-      const data = await response.json();
+      })
+      const data = await response.json()
       if (!response.ok) {
-        throw new Error((data as {error?: string, message?: string}).error || (data as {error?: string, message?: string}).message || "Verification code resend failed");
+        throw new Error(
+          (data as { error?: string; message?: string }).error ||
+            (data as { error?: string; message?: string }).message ||
+            "Verification code resend failed"
+        )
       }
-      setSuccessMessage("Verification code sent successfully");
+      setSuccessMessage("Verification code sent successfully")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to resend verification code");
+      setError(err instanceof Error ? err.message : "Failed to resend verification code")
     } finally {
-      setIsResendingVerificationCode(false);
+      setIsResendingVerificationCode(false)
     }
-  };
+  }
   return (
     <AuthLayout imageSrc="/assets/auth/register/register.jpg">
       <Box
@@ -119,7 +127,7 @@ export default function VerifyEmailClient() {
               onChange={(e) => handleChange(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
               ref={(el) => {
-                inputRefs.current[index] = el;
+                inputRefs.current[index] = el
               }}
               style={{
                 width: "40px",
@@ -146,7 +154,9 @@ export default function VerifyEmailClient() {
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography variant="body2">Didn't receive the code?</Typography>
-          <Button intent="link" onClick={handleResendVerificationCode} loading={isResendingVerificationCode}>Resend Code</Button>
+          <Button intent="link" onClick={handleResendVerificationCode} loading={isResendingVerificationCode}>
+            Resend Code
+          </Button>
         </Box>
 
         {successMessage && (
@@ -156,5 +166,5 @@ export default function VerifyEmailClient() {
         )}
       </Box>
     </AuthLayout>
-  );
+  )
 }

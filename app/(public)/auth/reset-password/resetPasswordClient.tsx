@@ -1,48 +1,48 @@
-"use client";
-import { Lock } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
-import { cookies } from "next/headers";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
-import { TextField } from "components/TextField/TextField";
+"use client"
+import { Lock } from "@mui/icons-material"
+import { Box, Typography } from "@mui/material"
+import { cookies } from "next/headers"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { FormEvent, useEffect, useState } from "react"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
+import { TextField } from "components/TextField/TextField"
 
 interface ResetPasswordClientProps {
-  token: string;
+  token: string
 }
 
 export default function ResetPasswordClient({ token }: ResetPasswordClientProps) {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [newPassword, setNewPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const saveResetToken = async () => {
-      const cookieStore = await cookies();
-      cookieStore.set("resetToken", token);
-    };
-    saveResetToken();
-  }, [token]);
+      const cookieStore = await cookies()
+      cookieStore.set("resetToken", token)
+    }
+    saveResetToken()
+  }, [token])
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setError("");
+    e.preventDefault()
+    setError("")
 
     if (!newPassword || !confirmPassword) {
-      setError("Please fill in both password fields.");
-      return;
+      setError("Please fill in both password fields.")
+      return
     }
 
     if (newPassword !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
+      setError("Passwords do not match.")
+      return
     }
 
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       const response = await fetch("/api/auth/reset-password", {
         method: "POST",
@@ -50,20 +50,20 @@ export default function ResetPasswordClient({ token }: ResetPasswordClientProps)
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ token, newPassword }),
-      });
-      const data = await response.json() as { error?: string; message?: string };
+      })
+      const data = (await response.json()) as { error?: string; message?: string }
 
       if (!response.ok) {
-        throw new Error(data.error || data.message || "Reset password failed");
+        throw new Error(data.error || data.message || "Reset password failed")
       }
 
-      router.push("/auth/login");
+      router.push("/auth/login")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred.");
+      setError(err instanceof Error ? err.message : "An error occurred.")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <AuthLayout imageSrc="/assets/auth/reset-password/reset-password.jpg">
@@ -112,5 +112,5 @@ export default function ResetPasswordClient({ token }: ResetPasswordClientProps)
         </Typography>
       </Box>
     </AuthLayout>
-  );
+  )
 }

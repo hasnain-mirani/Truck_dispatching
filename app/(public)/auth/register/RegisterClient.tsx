@@ -1,81 +1,80 @@
-"use client";
-import { Email, Lock, Person } from "@mui/icons-material";
-import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
-import { Button } from "components/Button/Button";
-import { AuthLayout } from "components/Layouts/AuthLayout";
-import { TextField } from "components/TextField/TextField";
+"use client"
+import { Email, Lock, Person } from "@mui/icons-material"
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { FormEvent, useState } from "react"
+import { Button } from "components/Button/Button"
+import { AuthLayout } from "components/Layouts/AuthLayout"
+import { TextField } from "components/TextField/TextField"
 
 export default function RegisterClient() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [acceptedTerms, setAcceptedTerms] = useState(false)
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setIsLoading(true);
+    e.preventDefault()
+    setError("")
+    setIsLoading(true)
 
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      setError("All fields are required.");
-      return;
+      setError("All fields are required.")
+      return
     }
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
+      setError("Passwords do not match.")
+      return
     }
     if (!acceptedTerms) {
-      setError("You must agree to the Terms and Conditions.");
-      return;
+      setError("You must agree to the Terms and Conditions.")
+      return
     }
 
-    setIsLoading(true);
+    setIsLoading(true)
 
     try {
-
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ firstName, lastName, email, password }),
-      });
+      })
 
       const data = (await response.json()) as {
-        success: boolean;
-        message: string;
-        responseObject: { requiresVerification: boolean } | null;
-        statusCode: number;
-        error?: string;
-      };
+        success: boolean
+        message: string
+        responseObject: { requiresVerification: boolean } | null
+        statusCode: number
+        error?: string
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || data.message || "Registration failed");
+        throw new Error(data.error || data.message || "Registration failed")
       }
 
       if (!data.success) {
-        throw new Error(data.message || "Registration failed");
+        throw new Error(data.message || "Registration failed")
       }
 
       if (data.responseObject?.requiresVerification) {
-        router.push("/auth/verify-email");
+        router.push("/auth/verify-email")
       } else {
-        router.push("/auth/login");
+        router.push("/auth/login")
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred during registration");
+      setError(err instanceof Error ? err.message : "An error occurred during registration")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <AuthLayout imageSrc="/assets/auth/register/register.jpg">
@@ -94,7 +93,7 @@ export default function RegisterClient() {
           </Typography>
         )}
 
-        <Box sx={{ display: 'flex', gap: 2 }}>
+        <Box sx={{ display: "flex", gap: 2 }}>
           <TextField
             label="First Name"
             placeholder="e.g. John"
@@ -106,7 +105,7 @@ export default function RegisterClient() {
             fullWidth
           />
           <TextField
-            label="Last Name" 
+            label="Last Name"
             placeholder="e.g. Doe"
             startIcon={<Person />}
             type="text"
@@ -150,9 +149,7 @@ export default function RegisterClient() {
         />
 
         <FormControlLabel
-          control={
-            <Checkbox checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
-          }
+          control={<Checkbox checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />}
           label="I agree to the Terms and Conditions"
         />
 
@@ -165,5 +162,5 @@ export default function RegisterClient() {
         </Typography>
       </Box>
     </AuthLayout>
-  );
+  )
 }
