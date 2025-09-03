@@ -1,11 +1,11 @@
-# Truckvise Frontend
+# TruckDispatch Frontend
 
 ## Downloading
 
 To download the project, you can clone the repository using the following command:
 
 ```sh
-git clone https://github.com/softwareinsight/truckvise-frontend.git
+git clone https://github.com/hasnain-mirani/Truck_dispatching.git
 ```
 
 Then navigate to the project directory:
